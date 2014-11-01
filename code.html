@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <style>
+	body {
+		background: #000;
+		color: #FFF;
+	}
+    </style>
+</head>
+<body>
+<!--ここからコピー-->
+<div>
+	<div style="margin: 20px 0 0px 32px; padding: 2px 4px; border: 1px solid #ffffff; font-size: 12px; font-family:'HelveticaNeue-Medium', HirakakuPro-W6; border-radius: 4px; height:20px; line-height:20px; overflow:hidden; opacity:0.7"><span id="clipboardText"></span></div>
+	<div style="margin: 0 0 0 32px;">
+      <div style="padding: 10px; font-size:16px; font-family:'HelveticaNeue-Light', '.HirakakuInterface-W2'; float:left;"><a href="#" onClick="openLink('sleipnir')">Sleipnirで開く</a></div>
+      <div style="padding: 10px; font-size:16px; font-family:'HelveticaNeue-Light', '.HirakakuInterface-W2'; float:left;"><a href="#" onClick="openLink('xarticles')">Articlesで開く</a></div>
+    </div>
+</div>
+<script>
+document.getElementById('clipboardText').innerText=CLIPBOARD;
+var clipcontent = CLIPBOARD;
+
+function analizeText(type, txt){
+	switch(type) {
+		case 'browser':
+		var u = (/^(http)/.exec(txt))||null;
+		if(u.length > 0){
+			return txt.substring(4);
+		}
+		default:
+		break;
+	}
+	
+	return true;
+}
+
+function openLink(appname){
+	var analizedcontent;
+	switch(appname) {
+		case 'sleipnir':
+		analizedcontent = analizeText('browser', clipcontent);
+		location.href ="sleipnirblue"+analizedcontent;
+		break;
+		case 'xarticles':
+		analizedcontent = analizeText('browser', clipcontent);
+		location.href ="x-articles"+analizedcontent;
+	}
+}
+</script>
+<!--ここまで-->
+</body>
+</html>
